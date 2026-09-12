@@ -81,20 +81,6 @@ gemini-chatbot-app/
 3. Press Enter or click Send to submit
 4. The Gemini AI will process your message and respond
 
-## Configuration
-
-### ESLint Configuration
-
-This project includes ESLint rules for code quality. The configuration uses:
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) with Oxc
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react) with SWC (alternative)
-
-To expand ESLint rules for production applications, refer to the [TypeScript template](https://github.com/vitejs/vite/tree/main/packages/create-vite) for type-aware lint rules.
-
-### React Compiler (Optional)
-
-The React Compiler is not enabled by default due to its impact on dev & build performance. To enable it, see [React Compiler documentation](https://react.dev/learn/react-compiler/installation).
-
 ## Environment Variables
 
 | Variable | Description |
@@ -109,31 +95,6 @@ npm run build
 
 This creates an optimized build in the `dist/` directory, ready for deployment.
 
-## Deployment
-
-The app can be deployed to platforms like:
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS Amplify
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues and pull requests.
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Resources
-
-- [React Documentation](https://react.dev)
-- [Vite Documentation](https://vitejs.dev)
-- [Google Gemini API Docs](https://ai.google.dev)
-
-## Support
-
-For issues or questions, please open an [issue](https://github.com/hungle88/gemini-chatbot-app/issues) on GitHub.
 
 ---
 
