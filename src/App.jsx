@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChatbotIcon from './components/ChatbotIcon';
 import ChatForm from './components/ChatForm';
 import ChatMessage from './components/ChatMessage';
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
-  const updateHistory = (text) => {
+  const [showChatbot, setShowChatbot] = useState(false);
+  const chatBodyRef = useRef();
+  const updateHistory = (text, isError = false) => {
     setChatHistory((prev) => [
       ...prev.filter((msg) => msg.text !== 'Thinking...'),
-      { role: 'model', text },
+      { role: 'model', text, isError },
     ]);
   };
   const generateBotResponse = async (history) => {
@@ -37,11 +39,25 @@ function App() {
         .trim();
       updateHistory(formattedResponse);
     } catch (error) {
-      console.log(error);
+      updateHistory(error.message, true);
     }
   };
+
+  useEffect(() => {
+    chatBodyRef.current.scrollTo({
+      top: chatBodyRef.current.scrollHeight,
+      behavior: 'smooth',
+    });
+  }, [chatHistory]);
   return (
-    <div className='container'>
+    <div className={`container ${showChatbot ? 'show-chatbot' : ''}`}>
+      <button
+        onClick={() => setShowChatbot((prev) => !prev)}
+        id='chatbot-toggler'
+      >
+        <span className='material-symbols-outlined'>mode_comment</span>
+        <span className='material-symbols-outlined'>close</span>
+      </button>
       <div className='chatbot-popup'>
         {/* chatbot header */}
         <div className='chat-header'>
@@ -49,13 +65,16 @@ function App() {
             <ChatbotIcon />
             <h2 className='logo-text'>Chatbot</h2>
           </div>
-          <button className='material-symbols-outlined'>
+          <button
+            onClick={() => setShowChatbot((prev) => !prev)}
+            className='material-symbols-outlined'
+          >
             keyboard_arrow_down
           </button>
         </div>
 
         {/* chatbot body */}
-        <div className='chat-body'>
+        <div ref={chatBodyRef} className='chat-body'>
           <div className='message bot-message'>
             <ChatbotIcon />
             <p className='message-text'>
