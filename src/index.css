@@ -157,6 +157,7 @@ border-radius: 13px 13px 3px 13px;
 }
 
 .chat-form button {
+  display:none;
   height: 35px;
   width: 35px;
   border: none;
@@ -176,6 +177,6 @@ border-radius: 13px 13px 3px 13px;
   background: #593bab;
 }
 
-.chat-form .message-input:valid ~ button {
+.chat-form .message-input:valid ~button {
   display: block;
 }
